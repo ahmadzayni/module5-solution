@@ -1,0 +1,63 @@
+<div class="container">
+    
+    <fieldset style="color: black;">
+      <legend style="color: white">Registration</legend>
+      
+      <div ng-if="reg.submitted">Your information has been saved</div>
+
+        <form name="signUpForm" novalidate>
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-6">
+              <label for="firstName">First name</label>
+              <input type="text" class="form-control" name="firstName" placeholder="First name" required ng-model="reg.info.firstName">
+              <span ng-if="signUpForm.firstName.$invalid && signUpForm.firstName.$touched">
+                 First name is required
+               </span>
+            </div>
+            <div class="form-group col-md-6 col-sm-6">
+              <label for="lastName">Last name</label>
+              <input type="text" class="form-control" name="lastName" placeholder="Last name" required ng-model="reg.info.lastName">
+              <span ng-if="signUpForm.lastName.$invalid && signUpForm.lastName.$touched">
+                 Last name is required
+               </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-6">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" name="email" placeholder="Email address" required ng-model="reg.info.email">
+              <span ng-if="signUpForm.email.$invalid && signUpForm.email.$touched">
+                 Insert a valid email address: </br>example@domain format
+               </span>
+            </div>
+            <div class="form-group col-md-6 col-sm-6">
+              <label for="phone">Phone number</label>
+              <input type="text" class="form-control" name="phone" placeholder="Phone number ###-###-####"
+                pattern="(\d{3})-(\d{3})-(\d{4})" ng-model="reg.info.phone">
+                <span ng-if="signUpForm.phone.$invalid && signUpForm.phone.$touched">
+                        Phone must be in the format ###-###-####
+                      </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-6">
+              <label for="favorite">Favorite dish - insert the menu number </label>
+              <input type="text" class="form-control" name="favorite" placeholder="insert the menu number" ng-model="reg.info.favorite"
+                ng-blur="reg.validateFavorite()">
+              <span ng-if="reg.invalidFavorite">
+                      No such menu number exists
+                    </span>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <label>Click to register</label>
+                </br>
+                <button type="submit" class="btn btn-default"
+                        ng-disabled="signUpForm.$invalid"
+                        ng-click="reg.submit()">Submit</button>
+            </div>
+        </div>
+      </form>
+      
+    </fieldset>
+    
+</div>
